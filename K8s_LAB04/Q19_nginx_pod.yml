@@ -1,0 +1,56 @@
+# ==============================================
+#
+# ==============================================
+#
+# ================= FILE START ==================
+#
+# ==============================================
+#
+# Created By: Hossam Mahmoud
+# Date: 2025-02-13
+# Filename: Q19_nginx_pod.yml
+# Description: 
+# Version: 1.0.0
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# =========== IMPLEMENTATION START =============
+#
+# ==============================================
+
+apiVersion: v1  # Specifies the API version for Kubernetes apps
+kind: Pod     # Defines the resource type
+metadata:
+  name: node-pod  # Name of the resource type
+  labels:
+    app: node  # Label for the resource type
+  annotations:
+    tracking: "nginx-pod-v1"  # Annotation for tracking purposes
+
+spec:  # Pod spec
+  containers:
+    - name: node-con # Name of the container inside the pod
+      image: nginx # Container image used
+
+      readinessProbe:
+      httpGet:
+        path: /health
+        port: 80
+      initialDelaySeconds: 5  # Wait 5 seconds before the first check
+      periodSeconds: 10  # Check every 10 seconds
+
+# ==============================================
+#
+# ============ IMPLEMENTATION END ==============
+#
+# ==============================================
+#
+# End of File
+# Copyright (c) 2025 Hossam. All rights reserved.
+#
+# ==============================================
+#
+# ================== FILE END ====================
+#
+# ==============================================
